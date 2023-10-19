@@ -12,13 +12,12 @@
 
 {% block titulocontenido_cambiante %}
     <h1> Blogs </h1>
+    <hr>
 {% endblock %}
 
 {% block contenido_cambiante %}    
     {% for blog in object_list %}
-    <hr>
         <table>
-            <br>
             <h4>{{ blog.titulofoto }}</h4>
             <img src="{{blog.imagen.url}}" class="" width="200px">
             <br>

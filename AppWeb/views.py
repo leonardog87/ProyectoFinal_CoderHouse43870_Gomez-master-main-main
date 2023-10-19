@@ -29,30 +29,15 @@ def userList(request):
     users=User.objects.all()
     return render(request,'AppWeb/userList.html', {"users":users})
 
-def mensajeUserList(request):
-  
+def mensajeUserList(request):  
     mensajesUsers=MensajeUser.objects.filter(user=request.user.id)
     return render(request,'AppWeb/mensajeUserList.html', {"mensajesUsers":mensajesUsers})
-
-#def mensajeUserDetail(request, pk):
-    mensajesUsers=MensajeUser.objects.filter(user=request.user.id, user_transmitter=pk)
-    mensajesUserst=MensajeUser.objects.filter(user=pk, user_transmitter=request.user.id)
-    usertra=MensajeUser.objects.filter()
-    #mensajesUsers=MensajeUser.objects.all()
-    return render(request,'AppWeb/mensajeUserDetail.html', {"mensajesUsers":mensajesUsers, "mensajesUserst":mensajesUserst})
 
 def mensajeUserDetail(request, pk):
     usertra=User.objects.get(id=pk)
     userrec=User.objects.get(id=request.user.id)
     mensajesUsers=MensajeUser.objects.all()
     return render(request,'AppWeb/mensajeUserDetail.html', {"mensajesUsers":mensajesUsers, "usertra":usertra, "userrec":userrec})
-
-#def mensajeUserDetail(request, pk):
-    usertra=MensajeUser.objects.filter(user_transmitter=pk)
-    userrec=MensajeUser.objects.filter(user=request.user.id)
-    mensajesUsers=MensajeUser.objects.all()
-    return render(request,'AppWeb/mensajeUserDetail.html', {"mensajesUsers":mensajesUsers, "usertra":usertra, "userrec":userrec})
-
 
 #BLOG
 class BlogCreate(CreateView):
