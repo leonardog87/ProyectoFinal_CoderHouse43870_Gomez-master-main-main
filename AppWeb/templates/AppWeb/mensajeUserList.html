@@ -1,0 +1,50 @@
+{% extends "AppWeb/father.html" %}
+
+{% load static%}
+
+{% block tittle %}
+    mensaje user list
+{% endblock %}
+
+{% block link_cambiante2 %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'editarPerfil' %}">Perfil</a></li>
+{% endblock %}
+
+{% block titulocontenido_cambiante %}
+    <h1> Mis Mensajes</h1>
+    <hr>
+    
+{% endblock %}
+
+{% block contenido_cambiante %}    
+
+<h4>{{ nombre_usuario.user }}</h4>
+
+    {% for mensajeuser in mensajesUsers %}
+    {% if request.user.id != mensajeuser.user_transmitter.id %}
+        <table>
+
+            
+    <h4>de {{ mensajeuser.user_transmitter }}</h4>
+        
+                            
+                &nbsp;<a class="btn btn-info" href="{% url 'mensajeUserDetail' mensajeuser.user_transmitter.id %}">Ver</a>&nbsp;                          
+                <hr>
+
+        </table>
+        {% endif %}
+    {% endfor %}
+  
+    {% if user.is_authenticated %}
+        <br>
+        <a class="button" href="#">Crear que?</a>
+    {% else %}
+        <br>
+        <h6>Si deseas enviarle un mensaje a un usuario debes loguearte!</h6>
+    {% endif %}
+{% endblock %}
+
+&nbsp;<a class="btn btn-info" href="{% url 'blogDetail' blog.id %}">Ver</a>&nbsp;
+
+{% block section_cambiante %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "AppWeb/father.html" %}
+
+{% load static%}
+
+{% block tittle %}
+    user list
+{% endblock %}
+
+{% block link_cambiante2 %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'editarPerfil' %}">Perfil</a></li>
+{% endblock %}
+
+{% block titulocontenido_cambiante %}
+    <h1> Users list </h1>
+{% endblock %}
+
+{% block contenido_cambiante %}    
+    {% for user in users %}
+        {% if user.id != request.user.id %}
+            <hr>
+                <table>
+                <h4>{{ user.username }}</h4>
+                <a class="btn btn-info" href="{% url 'mensajesuser' user.id %}">Enviar Mensaje</a>&nbsp;         
+            </table>
+        {% endif %}
+    {% endfor %}
+    {% if user.is_authenticated %}
+        <br>
+        <a class="button" href="#">Crear blog!</a>
+    {% else %}
+        <br>
+        <h6>Si deseas enviarle un mensaje a un usuario debes loguearte!</h6>
+    {% endif %}
+{% endblock %}
+
+{% block section_cambiante %}
+{% endblock %}
