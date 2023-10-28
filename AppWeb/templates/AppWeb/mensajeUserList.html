@@ -19,20 +19,23 @@
 
 {% block contenido_cambiante %}    
 
-<h4>{{ nombre_usuario.user }}</h4>
+<h4></h4>
 
-    {% for mensajeuser in mensajesUsers %}
-    {% if request.user.id != mensajeuser.user_transmitter.id %}
+    {% for user in users %}
+    {% if request.user.id != user.id %}
+    {% if user.id != mensajesUsers.user_transmitter %}
+
         <table>
 
             
-    <h4>de {{ mensajeuser.user_transmitter }}</h4>
+    <h4>de {{ user.username }}</h4>
         
                             
-                &nbsp;<a class="btn btn-info" href="{% url 'mensajeUserDetail' mensajeuser.user_transmitter.id %}">Ver</a>&nbsp;                          
+    &nbsp;<a class="btn btn-info" href="{% url 'mensajeUserDetail' user.id %}">Ver</a>&nbsp;                            
                 <hr>
 
         </table>
+        {% endif %}
         {% endif %}
     {% endfor %}
   
@@ -43,9 +46,4 @@
         <br>
         <h6>Si deseas ver tus mensajes debes loguearte!</h6>
     {% endif %}
-{% endblock %}
-
-&nbsp;<a class="btn btn-info" href="{% url 'blogDetail' blog.id %}">Ver</a>&nbsp;
-
-{% block section_cambiante %}
 {% endblock %}
